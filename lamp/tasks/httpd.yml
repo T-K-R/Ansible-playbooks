@@ -1,11 +1,11 @@
 ---
 - name: install apache(httpd)
   yum:
-    name: httpd
+    name: "{{web_server}}"
     state: latest
-- name: start apache
+- name: start httpd
   service:
-    name: httpd
+    name: "{{web_server}}"
     state: started
 - name: copy index.html file
   copy:

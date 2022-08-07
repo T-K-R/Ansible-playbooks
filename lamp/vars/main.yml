@@ -1,2 +1,5 @@
 ---
 # vars file for lamp
+web_server: httpd
+db: mariadb
+webpage: php

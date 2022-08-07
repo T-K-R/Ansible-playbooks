@@ -1,7 +1,7 @@
 ---
 - name: install php
   yum:
-    name: php
+    name: "{{webpage}}"
     state: latest
 - name: copy phpinfo file
   copy:

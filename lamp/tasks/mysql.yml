@@ -1,7 +1,7 @@
 ---
 - name: install mariadb
   yum:
-    name: mariadb
+    name: "{{db}}"
     state: latest
 - name: install mariadb server
   yum: 
@@ -13,5 +13,5 @@
     state: latest
 - name: start mariadb
   service:
-    name: mariadb
+    name: "{{db}}"
     state: started
