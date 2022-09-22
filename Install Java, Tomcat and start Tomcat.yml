@@ -1,0 +1,32 @@
+---
+- name: install tomcat server
+  hosts: all
+  become: true
+
+  tasks:
+  - name: install java
+    yum:
+      name: java
+      state: latest
+
+  - name: download tomcat server packages
+    get_url:
+      url: https://dlcdn.apache.org/tomcat/tomcat-10/v10.0.23/bin/apache-tomcat-10.0.23.zip
+      dest: /usr/local
+
+  - name: extract tomcat packages
+    unarchive:
+      src: /usr/local/apache-tomcat-10.0.23.zip
+      dest: /usr/local
+      remote_src: yes
+  
+  - name: Recursively change ownership of a directory
+    file:
+      path: /usr/local/apache-tomcat-10.0.23/bin
+      state: directory
+      recurse: yes
+      owner: ansadmin
+      group: ansadmin 
+      mode: 0755
+  - name: Running the Tomcat script
+    shell: nohup /usr/local/apache-tomcat-10.0.23/bin/startup.sh
